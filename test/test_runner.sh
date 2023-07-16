@@ -4,7 +4,7 @@ wkdir=$(dirname $0)
 
 OSHT_JUNIT=1
 
-export BACKEND=`${DOCKERCOMPOSE} ps -q backend`
+export BACKEND=`docker-compose ps -q backend`
 
 . ${wkdir}/osht.sh
 

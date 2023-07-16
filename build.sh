@@ -11,10 +11,12 @@ docker-compose up -d
 # Check if the build was successful
 if [ $? -eq 0 ]; then
   echo "Docker containers built successfully."
-   sleep 10 
+
+  sleep 10 
+
   # Run the test runner script
   echo "Running tests..."
-  .test/test_runner.sh
+  ./test/test_runner.sh
 
   # Check the exit code of the test runner script
   if [ $? -eq 0 ]; then
