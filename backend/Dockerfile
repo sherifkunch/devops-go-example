@@ -21,14 +21,10 @@ CMD ["/code/bin/backend"]
 
 FROM builder AS dev-envs
 
-RUN apt-get update
-RUN apt-get install git
+RUN apt-get update && apt-get install git
 
+RUN addgroup -S docker && adduser -S --shell /bin/bash --ingroup docker vscode
 
-RUN <<EOF
-addgroup -S docker
-adduser -S --shell /bin/bash --ingroup docker vscode
-EOF
 
 # install Docker tools (cli, buildx, compose)
 COPY --from=gloursdocker/docker / /
