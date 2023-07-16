@@ -21,10 +21,9 @@ CMD ["/code/bin/backend"]
 
 FROM builder AS dev-envs
 
-RUN <<EOF
-apt-get update
-apt-get install git
-EOF
+RUN apt-get update
+RUN apt-get install git
+
 
 RUN <<EOF
 addgroup -S docker
