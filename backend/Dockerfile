@@ -8,12 +8,11 @@ ENV GOPATH /go
 ENV GOCACHE /go-build
 
 COPY go.mod go.sum ./
-RUN --mount=type=cache,target=/go/pkg/mod/cache \
-    go mod download
+RUN target=/go/pkg/mod/cache go mod download
 
 COPY . .
 
-RUN --mount=type=cache,target=/go/pkg/mod/cache --mount=type=cache,target=/go-build go build -o bin/backend main.go
+RUN target=/go/pkg/mod/cache target=/go-build go build -o bin/backend main.go
 
 CMD ["/code/bin/backend"]
 
