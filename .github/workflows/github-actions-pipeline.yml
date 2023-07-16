@@ -24,7 +24,7 @@ jobs:
           go-version: 1.16
 
       - name: Build backend
-        run: docker build . --file backend/Dockerfile --tag my-image-name:$(date +%s)
+        run: ./build.sh
 
 
       # - name: Test
