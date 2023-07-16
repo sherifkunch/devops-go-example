@@ -29,5 +29,15 @@ else
 fi
 
 docker login -u sherifkunch -p ${ARTIFACYORY_PASSWORD}
+
 docker-compose push 
+if [ $? -eq 0 ]; then
+    echo "Pushed succesfully to dockerhub"
+  else
+    echo "Push failed."
+    exit 1
+  fi
+
 docker-compose down --rmi local -v
+
+docker logout sherifkunch
