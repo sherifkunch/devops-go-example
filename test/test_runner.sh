@@ -10,3 +10,6 @@ if [[ $? != 0 ]]; then
   echo "Proxy is not healthy"
   exit 1
 fi
+
+# we can think of many other tests here, this one above is just an example
+# moreover, there are helpful tools which can be used to create such tests, but for simplicity I added just a simple one

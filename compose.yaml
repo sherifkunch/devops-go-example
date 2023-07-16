@@ -3,6 +3,7 @@ services:
     build:
       context: backend
       target: builder
+    image: sherifkunch/go-app:${GITHUB_SHA}
     secrets:
       - db-password
     depends_on:

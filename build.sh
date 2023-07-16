@@ -2,11 +2,11 @@
 
 # Build Docker containers using Docker Compose
 echo "Building Docker containers..."
-COMPOSE_DOCKER_CLI_BUILD=1 docker-compose build --pull --no-cache
+docker build --file backend/Dockerfile 
 
 sleep 5 
 
-COMPOSE_DOCKER_CLI_BUILD=1 docker-compose up -d 
+docker-compose up -d 
 
 # Check if the build was successful
 if [ $? -eq 0 ]; then
@@ -27,3 +27,6 @@ else
   echo "Failed to start Docker containers."
   exit 2
 fi
+
+docker-compose push
+docker-compose down --rmi local -v
