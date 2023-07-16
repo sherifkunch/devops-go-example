@@ -2,11 +2,11 @@
 
 # Build Docker containers using Docker Compose
 echo "Building Docker containers..."
-docker-compose build --pull --no-cache
+COMPOSE_DOCKER_CLI_BUILD=1 docker-compose build --pull --no-cache
 
 sleep 5 
 
-docker-compose up -d 
+COMPOSE_DOCKER_CLI_BUILD=1 docker-compose up -d 
 
 # Check if the build was successful
 if [ $? -eq 0 ]; then
