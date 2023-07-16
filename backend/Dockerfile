@@ -18,7 +18,7 @@ CMD ["/code/bin/backend"]
 
 FROM builder AS dev-envs
 
-RUN apt-get update && apt-get install git
+RUN apt-get update && apt-get install git && apt-get install curl
 
 RUN addgroup -S docker && adduser -S --shell /bin/bash --ingroup docker vscode
 
