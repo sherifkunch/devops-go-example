@@ -2,7 +2,10 @@
 
 # Build Docker containers using Docker Compose
 echo "Building Docker containers..."
-docker-compose build --pull --no-cache
+
+echo "Build backend"
+cd backend
+docker build . --file Dockerfile --tag my-image-name:$(date +%s)
 
 sleep 5 
 
