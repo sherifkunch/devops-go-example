@@ -3,13 +3,20 @@
 wkdir=$(dirname $0)
 
 OSHT_JUNIT=1
+OSHT_VERBOSE=1
+
 
 export BACKEND=`docker-compose ps -q backend`
+if [ ! -d ${wkdir}/../target ];then
+    mkdir ${wkdir}/../target
+fi
 
-. ${wkdir}/osht.sh
+OSHT_JUNIT_OUTPUT=${wkdir}/../target/docker-backend-test.xml
 
-PLAN 1
+cd test
+. osht.sh
 
-# it should be possible to search the ldap tree with read only user
-RUNS docker exec ${BACKEND} bash -c 'ls'
+PLAN 2
+
+RUNS docker exec ${BACKEND} ls
 GREP "main.go"
