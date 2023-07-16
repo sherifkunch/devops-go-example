@@ -23,10 +23,11 @@ if [ $? -eq 0 ]; then
     echo "Tests failed. There might be an issue."
     exit 1
   fi
-else
+else 
   echo "Failed to start Docker containers."
   exit 2
 fi
 
-docker-compose push
+docker login -u sherifkunch -p ${ARTIFACYORY_PASSWORD}
+docker-compose push 
 docker-compose down --rmi local -v

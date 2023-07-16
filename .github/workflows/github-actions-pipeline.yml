@@ -7,6 +7,10 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  ARTIFACYORY_PASSWORD: ${{ secrets.ARTIFACYORY_PASSWORD }}
+  GITHUB_SHA: ${GITHUB_SHA}
+
 jobs:
   build:
     name: Build and Test
@@ -26,6 +30,9 @@ jobs:
 
       - name: Build backend
         run: ./build.sh
+
+      - name: run env
+        run: env
 
 
       # - name: Test
