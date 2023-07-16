@@ -22,8 +22,8 @@ CMD ["/code/bin/backend"]
 FROM builder AS dev-envs
 
 RUN <<EOF
-apk update
-apk add git
+apt-get update
+apt-get install git
 EOF
 
 RUN <<EOF
