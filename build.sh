@@ -14,7 +14,7 @@ if [ $? -eq 0 ]; then
    sleep 5
   # Run the test runner script
   echo "Running tests..."
-  .test/test_runner.sh
+  test/test_runner.sh
 
   # Check the exit code of the test runner script
   if [ $? -eq 0 ]; then
