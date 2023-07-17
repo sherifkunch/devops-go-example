@@ -37,6 +37,8 @@ jobs:
     name: Deploy to Production
     needs: build
     runs-on: ubuntu-latest
+    # in case you want to make the deploy  step manual
+    #if: github.event_name == 'workflow_dispatch'  
 
     steps:
       - name: run
