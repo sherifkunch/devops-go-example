@@ -15,14 +15,13 @@ docker-compose build
 
 sleep 5 
 
-
 docker-compose up -d 
 
 # Check if the build was successful
 if [ $? -eq 0 ]; then
   echo "Docker containers built successfully."
-   sleep 10
-  # Run the test runner script
+   sleep 5
+
   echo "Running tests..."
   test/test_runner.sh
   
@@ -38,6 +37,8 @@ else
   echo "Failed to start Docker containers."
   exit 2
 fi
+
+if ${}
 
 docker login -u sherifkunch -p "${1}"
 
