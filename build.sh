@@ -2,7 +2,7 @@
 
 # Build Docker containers using Docker Compose
 echo "Building Docker containers..."
-docker build --file backend/Dockerfile 
+docker-compose build
 
 sleep 5 
 
@@ -19,6 +19,7 @@ if [ $? -eq 0 ]; then
   # Check the exit code of the test runner script
   if [ $? -eq 0 ]; then
     echo "Tests passed. Everything is working fine."
+    echo ""
   else
     echo "Tests failed. There might be an issue."
     exit 1
@@ -28,9 +29,10 @@ else
   exit 2
 fi
 
-docker login -u sherifkunch -p ${ARTIFACYORY_PASSWORD}
+docker login -u sherifkunch -p "${1}"
 
 docker-compose push 
+
 if [ $? -eq 0 ]; then
     echo "Pushed succesfully to dockerhub"
   else
