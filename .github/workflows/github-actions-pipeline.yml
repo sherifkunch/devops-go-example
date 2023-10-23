@@ -1,5 +1,4 @@
-name: Go CI/CD Pipeline
-
+name: Build Go backend, proxy and database
 on:
   workflow_dispatch:
     inputs:
@@ -46,15 +45,16 @@ jobs:
         run: echo "artifactory pass is ${ARTIFACTORY_PASSWORD}"
 
       - name: Login to github package repository
-        env:
-          ARTIFACTORY_PASSWORD: "${{ secrets.ARTIFACTORY_PASSWORD }}"
-        run: echo ${{ secrets.ARTIFACTORY_PASSWORD }} | docker login -u sherifkunch --password-stdin
+        run: docker login -u sherifkunch -p  ${ARTIFACTORY_PASSWORD}
+
       - name: Build backend
         run: ./build.sh ${ARTIFACTORY_PASSWORD} 
 
   deploy:
     name: Deploy to Production
     needs: build
+    environment:
+      name: "${{ inputs.ENVIRONMENT }}"
     runs-on: ubuntu-latest
     # in case you want to make the deploy  step manual
     #if: github.event_name == 'workflow_dispatch'  
