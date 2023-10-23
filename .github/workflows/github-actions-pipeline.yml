@@ -42,8 +42,9 @@ jobs:
           go-version: 1.16
 
       - name: set db password
-        run: echo ${DB_PASSWORD} > db/password.txt
-        
+        run: echo ${DB_PASSWORD} > db/password.txt\
+
+
       - name: see db/password.txt
         run: cat db/password.txt
 
