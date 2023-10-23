@@ -26,8 +26,6 @@ jobs:
   build:
     environment:
       name: "${{ inputs.ENVIRONMENT }}"
-      ARTIFACTORY_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
-      
     name: Build and Test
     runs-on: ubuntu-latest
 
