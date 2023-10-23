@@ -6,6 +6,7 @@ services:
     environment:
       - GITHUB_SHA=${GITHUB_SHA}
     image: sherifkunch/go-app:${GITHUB_SHA}
+    container_name: backend
     secrets:
       - db-password
     depends_on:
@@ -15,6 +16,7 @@ services:
   db:
     # We use a mariadb image which supports both amd64 & arm64 architecture
     image: mariadb:10-focal
+    container_name: database
     # If you really want to use MySQL, uncomment the following line
     #image: mysql:8
     command: '--default-authentication-plugin=mysql_native_password'
@@ -36,6 +38,7 @@ services:
 
   proxy:
     image: nginx
+    container_name: proxy
     volumes:
       - type: bind
         source: ./proxy/nginx.conf
