@@ -17,7 +17,7 @@ on:
         - qs
         - prod
 env:
-  ARTIFACYORY_PASSWORD: ${{ secrets.ARTIFACYORY_PASSWORD }}
+  ARTIFACTORY_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
   GITHUB_SHA: ${GITHUB_SHA}
   WORKDIR: "${{ github.workspace }}"
   DB_PASSWORD: "${DB_PASSWORD}"
@@ -26,6 +26,8 @@ jobs:
   build:
     environment:
       name: "${{ inputs.ENVIRONMENT }}"
+      ARTIFACTORY_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
+      
     name: Build and Test
     runs-on: ubuntu-latest
 
@@ -40,12 +42,14 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: 1.16
-          
+
       - name: set db password
         run: echo ${DB_PASSWORD} > db/password.txt
 
       - name: Build backend
-        run: ./build.sh ${ARTIFACYORY_PASSWORD} 
+        env:
+          ARTIFACTORY_PASSWORD: "${{ secrets.ARTIFACTORY_PASSWORD }}"
+        run: ./build.sh ${ARTIFACTORY_PASSWORD} 
 
   deploy:
     name: Deploy to Production
