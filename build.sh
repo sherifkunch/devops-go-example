@@ -1,10 +1,20 @@
 #!/bin/bash
 
+# Check if GITHUB_SHA is empty
+if [ -z "$GITHUB_SHA" ]; then
+  echo "GITHUB_SHA is empty. Generating a random string."
+  export GITHUB_SHA=$(date '+%s')
+else
+  echo "GITHUB_SHA is not empty: $GITHUB_SHA"
+fi
+
 # Build Docker containers using Docker Compose
+
 echo "Building Docker containers..."
 docker-compose build
 
 sleep 5 
+
 
 docker-compose up -d 
 
