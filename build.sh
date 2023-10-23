@@ -38,8 +38,6 @@ else
   exit 2
 fi
 
-if ${}
-
 docker login -u sherifkunch -p "${1}"
 
 docker-compose push 
