@@ -38,7 +38,7 @@ else
   exit 2
 fi
 
-docker login -u sherifkunch -p "${1}"
+#docker login -u sherifkunch -p "${1}"
 
 docker-compose push 
 
