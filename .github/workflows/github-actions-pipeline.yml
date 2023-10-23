@@ -43,9 +43,13 @@ jobs:
 
       - name: set db password
         run: echo ${DB_PASSWORD} > db/password.txt
+
+      - name: set db password
+        run: echo "artifactory pass is ${ARTIFACTORY_PASSWORD}"
+
       - name: Login to github package repository
-        # env:
-        #   ARTIFACTORY_PASSWORD: "${{ secrets.ARTIFACTORY_PASSWORD }}"
+        env:
+          ARTIFACTORY_PASSWORD: "${{ secrets.ARTIFACTORY_PASSWORD }}"
         run: echo ${{ secrets.ARTIFACTORY_PASSWORD }} | docker login -u sherifkunch --password-stdin
       - name: Build backend
         run: ./build.sh ${ARTIFACTORY_PASSWORD} 
