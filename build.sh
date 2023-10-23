@@ -49,6 +49,5 @@ if [ $? -eq 0 ]; then
     exit 1
   fi
 
-#docker-compose down --rmi local -v
 
-docker logout sherifkunch
+
