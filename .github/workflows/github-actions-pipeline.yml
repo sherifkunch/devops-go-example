@@ -7,11 +7,21 @@ on:
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
+    inputs:
+      ENVIRONMENT:
+        type: choice
+        description: Which environment
+        required: true
+        options: 
+        - dev
+        - qs
+        - prod
 
 
 env:
   ARTIFACYORY_PASSWORD: ${{ secrets.ARTIFACYORY_PASSWORD }}
   GITHUB_SHA: ${GITHUB_SHA}
+  WORKDIR: "${{ github.workspace }}"
 
 jobs:
   build:
